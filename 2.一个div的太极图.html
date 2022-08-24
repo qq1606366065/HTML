@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>旋转的太极图</title>
+    <style>
+        body{
+           background: #ED902D;
+        }
+        @keyframes taiji{
+            0%{
+                transform: rotate(0deg);
+            }
+            100%{
+                transform: rotate(360deg);
+            }
+        }
+        div{
+            position: relative;
+            width: 300px;
+            height: 600px;
+            margin: 50px auto;
+            background: #000;
+            border-left: 300px #fff solid;
+            border-radius: 50%;
+            animation: taiji 5s linear infinite;
+        }
+        div::after,
+        div::before{
+            position: absolute;
+            content: '';
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+        }
+        div::before{
+            background: #000;
+            border:100px #fff solid;
+            left: -150px;
+        }
+        div::after{
+            background: #fff;
+            border:100px #000 solid;
+            top: 300px;
+            left: -150px;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+</body>
+</html>

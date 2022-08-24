@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>渲染评论列表</title>
+</head>
+<body>
+    <div id="root"></div>
+    <script src="js/react.development.js"></script>
+    <script src="js/react-dom.development.js"></script>
+    <script src="js/babel.min.js"></script>
+    <script type="text/babel">
+        class App extends React.Component{
+            state={
+                comments:[
+                    {id:1,name:'job',content:'Hello react！！'}
+                ],
+                userName:'',
+                contents:''
+            }
+
+            //判断修改状态值用value还是checked，
+            holder=(e)=>{
+                const value=e.target.type==='checked'
+                            ?e.target.checked
+                            :e.target.value
+                this.setState({
+                    [e.target.name]:value
+                    
+                }) 
+            }
+            //发表评论
+            hand=()=>{
+
+                const {comments,userName,contents}=this.state
+                {/*trim()去除空字符 判断文本框是否为空值 return 返回不再进行下面操作*/}
+                if(userName.trim()===''||contents.trim()===''){
+                    return
+                }
+                {/*把得到新的值存在newComments中*/}
+                const newComments=[{
+                    id:Math.random(),
+                    name:userName,
+                    content:contents
+                },
+                {/*...comments决定每次新的值的位置 新值在上还是在下*/},
+                ...comments
+            ]
+                {/*把得到的新值放在状态 comments中*/}
+                this.setState({
+                    comments:newComments
+                })
+            }
+
+            //遍历
+            jk(){
+                return this.state.comments.length===''
+                ?(<h1>评论内容为空</h1>)
+                :(<div>
+                    <ul>
+                    {this.state.comments.map(item=>(
+                    <li key={item.id}>
+                    <h3>评论人:{item.name}</h3>    
+                    <p>评论内容：{item.content}</p>
+                    </li> 
+                    ))}
+                    </ul>
+                    </div>)
+            }
+            render(){
+                return <div>
+                    <input type="text" name='userName' value={this.state.userName} onChange={this.holder}/>
+                    <br/><br/>
+                    <textarea name="contents" id="" cols="30" rows="10" value={this.state.contents} onChange={this.holder}></textarea>
+                    <br/>
+                    <button onClick={this.hand}>发表评论</button>
+
+                    {this.jk()}
+                    </div>
+            }
+        }
+        ReactDOM.createRoot(document.getElementById('root')).render(<App/>)
+    </script>
+</body>
+</html>

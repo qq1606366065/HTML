@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>运行时间</title>
+</head>
+<body>
+    <!-- 存放时间的容器 -->
+    <span id="run_times"></span>
+    <script>
+    var run_times=document.querySelector('#run_times')
+	function showTime(){
+	setTimeout("showTime()", 1000);
+	BirthDay=new Date("2022-07-30 17:20:00");//建站日期
+	timeNow=new Date();
+	show_time=(timeNow.getTime()-BirthDay.getTime());
+	total_seconds=Math.floor(show_time/1000);
+	total_day=show_time/(24*60*60*1000);
+	day=Math.floor(total_day);
+	total_hours=(day-total_day)*-24;
+	hours=Math.floor(total_hours);
+	total_min=(hours-total_hours)*-60;
+	min=Math.floor((hours-total_hours)*-60);
+	seconds=Math.floor((min-total_min)*-60);
+    if(min<=9){
+        hours="0"+hours;
+        min="0"+min;
+        seconds="0"+seconds;
+    }
+	run_times.innerHTML=day+"天"+hours+"小时"+min+"分"+seconds+"秒" ;
+
+	}
+	showTime();
+    </script>
+    <style>
+
+        #run_times{animation:change 10s infinite;font-weight:700; }
+        
+        @keyframes change{0%{color:#5cb85c;}25%{color:#556bd8;}50%{color:#e40707;}75%{color:#66e616;}100% {color:#67bd31;}}
+        
+        </style> 
+</body>
+</html>

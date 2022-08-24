@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表单处理</title>
+</head>
+<body>
+    <div id="root"></div>
+    <script src="js/react.development.js"></script>
+    <script src="js/react-dom.development.js"></script>
+    <script src="js/babel.min.js"></script>
+    <script type="text/babel">
+        <div class=""></div>
+         class App extends React.Component{
+            state={
+                text:'',
+                isChecked:true,
+                city:'sh'
+            }
+            //受控组件
+            //1.在state中添加一个状态，作为表单元素的value值
+            //2.给表单元素绑定change事件将表单元素的值，设置为state的值
+
+            //文本框 下拉框修改value属性
+            //只有复选框修改checked属性
+            /*jk=(e)=>{
+                this.setState({text:e.target.value})
+            }
+
+
+            handChecked=(e)=>{
+                this.setState({isChecked:e.target.checked})
+            }
+            jd=(e)=>{
+                this.setState({city:e.target.value})
+                
+            }
+
+            render(){
+                console.log(this.state.text);
+                return <div>
+                    <input type="text" value={this.state.text} onChange={this.jk}/>
+                    <input type="checkbox" checked={this.state.isChecked} onChange={this.handChecked}/>
+                    <select  value={this.state.city}  onChange={this.jd}>
+                        <option value='bj'>北京</option>
+                        <option value='sh'>上海</option>     
+                        <option value='gz'>广州</option> 
+                    </select>
+                </div>
+            }*/
+            
+
+            //代码简写----通过判断type属性决定使用value还是checkbox  
+
+            jk=e=>{
+                {/*简写e.target*/}
+                const target=e.target
+            {/*根据type值判断使用value还是checked*/}
+                const value=target.type==='checkbox'
+                ?target.checked
+                :target.value
+                {/*给标签加一个name属性使其值等于要修改的属性名*/}
+                const name=target.name
+                
+                this.setState({
+                    [name]:value
+                })
+            }
+
+            render(){
+                return <div>
+                    <input type="text" name="text" value={this.state.text} onChange={this.jk}/>
+                    <input type="checkbox" name='isChecked' checked={this.state.isChecked} onChange={this.jk}/>
+                    <select name='city' value={this.state.city}  onChange={this.jk}>
+                        <option value='bj'>北京</option>
+                        <option value='sh'>上海</option>     
+                        <option value='gz'>广州</option> 
+                    </select>
+                </div>
+            }
+        }
+        ReactDOM.createRoot(document.getElementById('root')).render(<App/>)
+    </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>props深入</title>
+    <script src="js/react.development.js"></script>
+    <script src="js/react-dom.development.js"></script>
+    <script src="js/babel.min.js"></script>
+</head>
+<body>
+    <div id="hello"></div>
+    <div id="app"></div>
+    <script type="text/babel">
+
+        //一.children属性：当组件标签中有子节点，props才有children属性
+        //子节点的值可以是任意值(文本，函数，react元素，组件)
+                     function Hello(props) {
+                         return (
+                             <div>子节点：{props.children}</div>
+                         )
+                     }
+                     ReactDOM.createRoot(document.getElementById('hello')).render(<Hello>我是子节点</Hello>)
+
+        //二.props校验
+        /*1、安装prop-types(yarn add prop-types 或 npm i props-types)
+        2、导入prop-types包
+        3、使用 ：组件名.propTypes={ colors:PropTypes.array}   添加组件props校验规则（此处colors的属性为数组）
+            如果类型不对则爆出明显错误，便于分析错误原因
+        4.约束规范：
+        （1）常见类型：arrray,bool,func,number,object,string
+        (2) React元素类型：element
+        (3)必填项isRequired
+        （4)特定结果的对象：shape({})
+        */
+
+        //三、props默认值
+        const App=(props)=>{
+            console.log(props.pageSize);
+            return <div>
+            <h1>此处展示props默认值：{props.pageSize}</h1>
+                </div>
+        }
+        //添加props默认值:只会在未传入props时生效
+        App.defaultProps={
+            pageSize:10
+        }
+        
+        ReactDOM.createRoot(document.getElementById('app')).render(<App pageSize={20}/>)
+    </script>
+</body>
+</html>

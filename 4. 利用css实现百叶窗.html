@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>百叶窗利用hover经过事件</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        body{
+            background: #000;
+        }
+        div{
+            width: 720px;
+            height: 500px;
+            margin: 100px auto;
+            overflow: hidden;
+            border: 1px #000 solid;
+            -webkit-box-reflect: below 10px linear-gradient(transparent, rgba(0,0,0,.4));
+        }
+        div ul li{
+            list-style: none;
+            width: 120px;
+            float: left;
+            transition: all 1s;
+
+        }
+        img{
+            height: 500px;
+            border-radius: 25px;
+
+        }
+        div:hover li{
+            width: 64px;
+        }
+        div li:hover{
+            width: 400px;
+        }
+
+    </style>
+</head>
+<body>
+    <div>
+        <ul>
+            <li><img src="images/1.jpg" ></li>
+            <li><img src="images/1.jpg" ></li>
+            <li><img src="images/1.jpg" ></li>
+            <li><img src="images/1.jpg" ></li>
+            <li><img src="images/1.jpg" ></li>
+            <li><img src="images/1.jpg" ></li>
+        </ul>
+    </div>
+
+</body>
+</html>

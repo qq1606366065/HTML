@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>react事件绑定</title>
+</head>
+<body>
+    <div id="root"></div>
+    <script src="js/react.development.js"></script>
+    <script src="js/react-dom.development.js"></script>
+    <script src="js/babel.min.js"></script>
+    <script type="text/babel">
+    //函数式组件
+    function App(){
+      function click(){
+        alert("函数式点击事件");
+      }
+      return <button onClick={click}>函数式点击事件</button>
+    }
+    //类组件
+    class Apps extends React.Component{
+      click(){
+        alert("类式点击事件")
+      }
+      render(){
+        return <button onClick={this.click}>类式点击事件</button>
+      }
+    }
+    
+    ReactDOM.createRoot(document.getElementById('root')).render(  
+      <div>
+        <App/>
+        <br/>
+        <Apps/>
+      </div>)
+    </script>
+</body>
+</html>
